@@ -11,8 +11,10 @@ require github.com/spf13/cast v1.4.1 // 数据类型转换
 require (
 	gorm.io/driver/mysql v1.2.3 // mysql 驱动
 	gorm.io/driver/sqlite v1.2.6 // sqlite 驱动
-	gorm.io/gorm v1.22.4 // GORM 
+	gorm.io/gorm v1.22.4 // GORM
 )
+
+require github.com/thedevsaddam/govalidator v1.9.10
 
 require (
 	github.com/fsnotify/fsnotify v1.5.1 // indirect

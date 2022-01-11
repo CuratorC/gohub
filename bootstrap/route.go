@@ -2,10 +2,12 @@
 package bootstrap
 
 import (
-	"github.com/gin-gonic/gin"
+	"gohub/app/http/middlewares"
 	"gohub/routes"
 	"net/http"
 	"strings"
+
+	"github.com/gin-gonic/gin"
 )
 
 // SetupRoute 路由初始化
@@ -23,7 +25,7 @@ func SetupRoute(router *gin.Engine) {
 // 注册全局路由
 func registerGlobalMiddleWare(router *gin.Engine) {
 	router.Use(
-		gin.Logger(),
+		middlewares.Logger(),
 		gin.Recovery(),
 	)
 }

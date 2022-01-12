@@ -2,7 +2,7 @@
 package requests
 
 import (
-	"fmt"
+	"gohub/pkg/logger"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -23,7 +23,7 @@ func Validate(c *gin.Context, obj interface{}, handler ValidatorFunc) bool {
 			"message": "请求解析错误，请确认格式是否正确。上传文件请使用 multipart 标头，参数请使用 JSON 格式。",
 			"error":   err.Error(),
 		})
-		fmt.Println(err.Error())
+		logger.WarnString("Validate", "JSON 解析错误", err.Error())
 		return false
 	}
 

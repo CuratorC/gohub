@@ -6,6 +6,7 @@ require (
 	github.com/KenmyZhang/aliyun-communicate v0.0.0-20180308134849-7997edc57454 // 阿里云短信服务
 	github.com/gin-gonic/gin v1.7.7 // Go 路由工具
 	github.com/go-redis/redis/v8 v8.11.4 // redis 存储
+	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible // 邮箱服务
 	github.com/mojocn/base64Captcha v1.3.5 // 图片验证码
 	github.com/spf13/cast v1.4.1 // 数据类型转换
 	github.com/spf13/viper v1.10.1 // config & env 工具

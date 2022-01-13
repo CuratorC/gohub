@@ -60,12 +60,16 @@ func (vc *VerifyCode) SendEmail(email string) error {
 	// 生成验证码
 	code := vc.generateVerifyCode(email)
 
+	logger.DebugString("Email", "code", code)
+
 	// 方便本地和 API 自动测试
 	if !app.IsProduction() && strings.HasSuffix(email, config.GetString("verifycode.debug_email_suffix")) {
 		return nil
 	}
 
 	content := fmt.Sprintf("<h1>您的 Email 验证码是 %v </h1>", code)
+
+	logger.DebugString("Email", "content", content)
 
 	// 发送邮件
 	mail.New().Send(mail.Email{

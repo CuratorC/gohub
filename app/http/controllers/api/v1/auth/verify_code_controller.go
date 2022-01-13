@@ -52,7 +52,7 @@ func (vc *VerifyCodeController) SendUsingEmail(c *gin.Context) {
 		return
 	}
 
-	// 2. 发送 SMS
+	// 2. 发送 Email
 	err := verifycode.New().SendEmail(request.Email)
 	if err != nil {
 		response.Abort500(c, "发送 Email 验证码失败~")

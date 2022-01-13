@@ -6,12 +6,14 @@ require (
 	github.com/KenmyZhang/aliyun-communicate v0.0.0-20180308134849-7997edc57454 // 阿里云短信服务
 	github.com/gin-gonic/gin v1.7.7 // Go 路由工具
 	github.com/go-redis/redis/v8 v8.11.4 // redis 存储
+	github.com/golang-jwt/jwt v3.2.2+incompatible // JWT
 	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible // 邮箱服务
 	github.com/mojocn/base64Captcha v1.3.5 // 图片验证码
 	github.com/spf13/cast v1.4.1 // 数据类型转换
 	github.com/spf13/viper v1.10.1 // config & env 工具
 	github.com/thedevsaddam/govalidator v1.9.10 // 数据验证
 	go.uber.org/zap v1.20.0 // 日志服务
+	golang.org/x/crypto v0.0.0-20211215153901-e495a2d5b3d3 // Hash
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // 日志滚动删除
 	gorm.io/driver/mysql v1.2.3 // mysql 驱动
 	gorm.io/driver/sqlite v1.2.6 // sqlite 驱动
@@ -50,7 +52,6 @@ require (
 	github.com/ugorji/go/codec v1.2.6 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
-	golang.org/x/crypto v0.0.0-20211215153901-e495a2d5b3d3 // indirect
 	golang.org/x/image v0.0.0-20190802002840-cff245a6509b // indirect
 	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
 	golang.org/x/text v0.3.7 // indirect

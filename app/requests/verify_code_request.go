@@ -1,9 +1,10 @@
 package requests
 
 import (
+	"gohub/app/requests/validators"
+
 	"github.com/gin-gonic/gin"
 	"github.com/thedevsaddam/govalidator"
-	validators "gohub/app/requests/Validators"
 )
 
 type VerifyCodePhoneRequest struct {

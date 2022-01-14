@@ -8,10 +8,12 @@ require (
 	github.com/go-redis/redis/v8 v8.11.4 // redis 存储
 	github.com/golang-jwt/jwt v3.2.2+incompatible // JWT
 	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible // 邮箱服务
+	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d // 控制台高亮
 	github.com/mojocn/base64Captcha v1.3.5 // 图片验证码
 	github.com/spf13/cast v1.4.1 // 数据类型转换
 	github.com/spf13/viper v1.10.1 // config & env 工具
 	github.com/thedevsaddam/govalidator v1.9.10 // 数据验证
+	github.com/ulule/limiter/v3 v3.9.0 // 限流插件
 	go.uber.org/zap v1.20.0 // 日志服务
 	golang.org/x/crypto v0.0.0-20211215153901-e495a2d5b3d3 // Hash
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // 日志滚动删除
@@ -19,6 +21,8 @@ require (
 	gorm.io/driver/sqlite v1.2.6 // sqlite 驱动
 	gorm.io/gorm v1.22.4 // GORM
 )
+
+require github.com/spf13/cobra v1.3.0
 
 require (
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
@@ -33,11 +37,13 @@ require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/uuid v1.1.2 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
+	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.3 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/magiconair/properties v1.8.5 // indirect
+	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/mattn/go-sqlite3 v1.14.9 // indirect
 	github.com/mitchellh/mapstructure v1.4.3 // indirect
@@ -51,7 +57,6 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/subosito/gotenv v1.2.0 // indirect
 	github.com/ugorji/go/codec v1.2.6 // indirect
-	github.com/ulule/limiter/v3 v3.9.0 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	golang.org/x/image v0.0.0-20190802002840-cff245a6509b // indirect

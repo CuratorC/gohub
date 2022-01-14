@@ -11,6 +11,7 @@ require (
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d // 控制台高亮
 	github.com/mojocn/base64Captcha v1.3.5 // 图片验证码
 	github.com/spf13/cast v1.4.1 // 数据类型转换
+	github.com/spf13/cobra v1.3.0 // 命令行模式
 	github.com/spf13/viper v1.10.1 // config & env 工具
 	github.com/thedevsaddam/govalidator v1.9.10 // 数据验证
 	github.com/ulule/limiter/v3 v3.9.0 // 限流插件
@@ -21,8 +22,6 @@ require (
 	gorm.io/driver/sqlite v1.2.6 // sqlite 驱动
 	gorm.io/gorm v1.22.4 // GORM
 )
-
-require github.com/spf13/cobra v1.3.0
 
 require (
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect

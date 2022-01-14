@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"gohub/app/cmd"
+	"gohub/app/cmd/make"
 	"gohub/bootstrap"
 	btsConfig "gohub/config"
 	"gohub/pkg/config"
@@ -47,6 +48,7 @@ func main() {
 		cmd.CmdServe, // 服务运行
 		cmd.CmdKey,   // 生成密钥
 		cmd.CmdPlay,  // Play 调试
+		make.CmdMake, // make 命令
 	)
 
 	// 配置默认运行 Web 服务

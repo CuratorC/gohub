@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"gohub/app/cmd"
 	"gohub/bootstrap"
-	btsConig "gohub/config"
+	btsConfig "gohub/config"
 	"gohub/pkg/config"
 	"gohub/pkg/console"
 	"os"
@@ -14,7 +14,7 @@ import (
 
 func init() {
 	// 加载 config 目录下的配置信息
-	btsConig.Initialize()
+	btsConfig.Initialize()
 }
 
 func main() {
@@ -45,6 +45,7 @@ func main() {
 	// 注册子命令
 	rootCmd.AddCommand(
 		cmd.CmdServe,
+		cmd.CmdKey,
 	)
 
 	// 配置默认运行 Web 服务

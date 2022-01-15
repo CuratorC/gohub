@@ -4,6 +4,8 @@ package file
 import (
 	"io/ioutil"
 	"os"
+	"path/filepath"
+	"strings"
 )
 
 // Put 将数据存入文件
@@ -22,4 +24,9 @@ func Exists(fileToCheck string) bool {
 		return false
 	}
 	return true
+}
+
+// NameWithoutExtension 去除文件后缀
+func NameWithoutExtension(fileName string) string {
+	return strings.TrimSuffix(fileName, filepath.Ext(fileName))
 }

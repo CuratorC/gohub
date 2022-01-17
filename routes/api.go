@@ -58,6 +58,13 @@ func RegisterAPIRoutes(r *gin.Engine) {
 				// 获取所有用户
 				usersGroup.GET("", uc.Index)
 			}
+
+			cgc := new(controllers.CategoriesController)
+
+			cgcGroup := v1.Group("/categories")
+			{
+				cgcGroup.POST("", middlewares.AuthJWT(), cgc.Store)
+			}
 		}
 	}
 }

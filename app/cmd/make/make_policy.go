@@ -2,6 +2,7 @@ package make
 
 import (
 	"fmt"
+	"gohub/pkg/logger"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -20,7 +21,11 @@ func runMakePolicy(cmd *cobra.Command, args []string) {
 	model := makeModelFromString(args[0])
 
 	// os.MkdirAll 会确保父目录和子目录都会创建，第二个参数是目录权限，使用 0777
-	os.MkdirAll("app/policies", os.ModePerm)
+	err := os.MkdirAll("app/policies", os.ModePerm)
+	if err != nil {
+		logger.ErrorString("policy", "mkdirAll", err.Error())
+		return
+	}
 
 	// 拼接目标文件路径
 	filePath := fmt.Sprintf("app/policies/%s_policy.go", model.PackageName)

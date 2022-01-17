@@ -4,7 +4,6 @@ package seed
 import (
 	"gohub/pkg/console"
 	"gohub/pkg/database"
-
 	"gorm.io/gorm"
 )
 
@@ -49,9 +48,11 @@ func GetSeeder(name string) Seeder {
 // RunAll 运行所有 Seeder
 func RunAll() {
 	// 先运行 ordered 的
+
 	executed := make(map[string]string)
 	for _, name := range orderedSeederNames {
 		sdr := GetSeeder(name)
+
 		if len(sdr.Name) > 0 {
 			console.Warning("Running Ordered Seeder: " + sdr.Name)
 			sdr.Func(database.DB)

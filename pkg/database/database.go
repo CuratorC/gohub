@@ -6,6 +6,8 @@ import (
 	"errors"
 	"fmt"
 	"gohub/pkg/config"
+	"gohub/pkg/logger"
+
 	"gorm.io/gorm"
 	gormlogger "gorm.io/gorm/logger"
 )
@@ -47,7 +49,11 @@ func DeleteAllTables() error {
 	case "mysql":
 		err = deleteMysqlDatabase()
 	case "sqlite":
-		deleteAllSqliteTables()
+		err := deleteAllSqliteTables()
+		if err != nil {
+			logger.ErrorString("database", "sqlite", "delete all sqlite tables error")
+			return err
+		}
 	default:
 		panic(errors.New("database connection not supported"))
 	}
@@ -59,24 +65,37 @@ func deleteAllSqliteTables() error {
 	tables := []string{}
 	DB.Select(&tables, "SELECT name FROM sqlite_master WHERE type='table'")
 	for _, table := range tables {
-		DB.Migrator().DropTable(table)
+		err := DB.Migrator().DropTable(table)
+		if err != nil {
+			logger.ErrorString("database", "sqlite", fmt.Sprintf("delete sqlite table %v error", table))
+			return err
+		}
 	}
 	return nil
 }
 
 func deleteMysqlDatabase() error {
 	dbname := CurrentDatabase()
-	sql := fmt.Sprintf("DROP DATABASE %s;", dbname)
-	if err := DB.Exec(sql).Error; err != nil {
+	query := fmt.Sprintf("DROP DATABASE %s;", dbname)
+	if err := DB.Exec(query).Error; err != nil {
 		return err
 	}
-	sql = fmt.Sprintf("CREATE DATABASE %s;", dbname)
-	if err := DB.Exec(sql).Error; err != nil {
+	query = fmt.Sprintf("CREATE DATABASE %s;", dbname)
+	if err := DB.Exec(query).Error; err != nil {
 		return err
 	}
-	sql = fmt.Sprintf("USE %s;", dbname)
-	if err := DB.Exec(sql).Error; err != nil {
+	query = fmt.Sprintf("USE %s;", dbname)
+	if err := DB.Exec(query).Error; err != nil {
 		return err
 	}
 	return nil
+}
+
+func TableName(obj interface{}) string {
+	stmt := &gorm.Statement{DB: DB}
+	err := stmt.Parse(obj)
+	if err != nil {
+		return "empty_table_name"
+	}
+	return stmt.Schema.Table
 }

@@ -106,49 +106,32 @@ func (rds Client) FlushDB() bool {
 	return true
 }
 
-// Increment 当参数只有 1 个时，为 key，其值增加 1。
-// 当参数有 2 个时，第一个参数为 key ，第二个参数为要增加的值 int64 类型。
-func (rds Client) Increment(parameters ...interface{}) bool {
-	switch len(parameters) {
-	case 1:
-		key := parameters[0].(string)
-		if err := rds.Client.Incr(rds.Context, key).Err(); err != nil {
-			logger.ErrorString("Redis", "Increment", err.Error())
-			return false
-		}
-	case 2:
-		key := parameters[0].(string)
-		value := parameters[0].(int64)
-		if err := rds.Client.IncrBy(rds.Context, key, value).Err(); err != nil {
-			logger.ErrorString("Redis", "Increment", err.Error())
-			return false
-		}
-	default:
-		logger.ErrorString("Redis", "Increment", "参数过多")
+func (rds Client) Increment(key string) bool {
+	if err := rds.Client.Incr(rds.Context, key).Err(); err != nil {
+		logger.ErrorString("Redis", "Increment", err.Error())
 		return false
 	}
 	return true
 }
 
-// Decrement 当参数只有 1 个时，为 key，其值减去 1。
-// 当参数有 2 个时，第一个参数为 key ，第二个参数为要减去的值 int64 类型。
-func (rds Client) Decrement(parameters ...interface{}) bool {
-	switch len(parameters) {
-	case 1:
-		key := parameters[0].(string)
-		if err := rds.Client.Decr(rds.Context, key).Err(); err != nil {
-			logger.ErrorString("Redis", "Decrement", err.Error())
-			return false
-		}
-	case 2:
-		key := parameters[0].(string)
-		value := parameters[0].(int64)
-		if err := rds.Client.DecrBy(rds.Context, key, value).Err(); err != nil {
-			logger.ErrorString("Redis", "Decrement", err.Error())
-			return false
-		}
-	default:
-		logger.ErrorString("Redis", "Decrement", "参数过多")
+func (rds Client) Increments(key string, count int64) bool {
+	if err := rds.Client.IncrBy(rds.Context, key, count).Err(); err != nil {
+		logger.ErrorString("Redis", "Increment", err.Error())
+	}
+	return true
+}
+
+func (rds Client) Decrement(key string) bool {
+	if err := rds.Client.Decr(rds.Context, key).Err(); err != nil {
+		logger.ErrorString("Redis", "Decrement", err.Error())
+		return false
+	}
+	return true
+}
+
+func (rds Client) Decrements(key string, count int64) bool {
+	if err := rds.Client.DecrBy(rds.Context, key, count).Err(); err != nil {
+		logger.ErrorString("Redis", "Decrement", err.Error())
 		return false
 	}
 	return true

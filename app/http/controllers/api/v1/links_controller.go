@@ -1,10 +1,9 @@
 package v1
 
 import (
+	"github.com/gin-gonic/gin"
 	"gohub/app/models/link"
 	"gohub/pkg/response"
-
-	"github.com/gin-gonic/gin"
 )
 
 type LinksController struct {

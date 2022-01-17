@@ -47,6 +47,7 @@ func AllCached() (links []Link) {
 	cacheKey := "links:all"
 	// 设置过期时间
 	expireTime := 120 * time.Minute
+
 	// 取数据
 	cache.RememberObject(cacheKey, expireTime, &links, func() interface{} {
 		return All()

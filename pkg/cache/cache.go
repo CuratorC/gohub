@@ -42,16 +42,18 @@ func Get(key string) interface{} {
 
 func Remember(key string, expireTime time.Duration, fu func() interface{}) (response interface{}) {
 	// 取数据
-	response = Get(key)
-
-	// 如果数据为空
-	if helpers.Empty(response) {
+	val := Cache.Store.Get(key)
+	if len(val) > 0 { // 读取缓存
+		err := json.Unmarshal([]byte(val), &response)
+		logger.LogIf(err)
+	} else {
 		// 执行查询
 		response = fu()
-		if !helpers.Empty(response) {
-			// 设置缓存
-			Set(key, response, expireTime)
+		if helpers.Empty(response) {
+			return
 		}
+		// 设置缓存
+		Set(key, response, expireTime)
 	}
 	return
 }
@@ -72,11 +74,13 @@ func GetObject(key string, wanted interface{}) {
 }
 
 func RememberObject(key string, expireTime time.Duration, wanted interface{}, fu func() interface{}) {
-	// 取数据
-	GetObject(key, &wanted)
 
-	// 如果数据为空
-	if helpers.Empty(wanted) {
+	// 取数据
+	val := Cache.Store.Get(key)
+	if len(val) > 0 { // 读取缓存
+		err := json.Unmarshal([]byte(val), &wanted)
+		logger.LogIf(err)
+	} else {
 		// 执行查询
 		wanted = fu()
 		if helpers.Empty(wanted) {

@@ -6,7 +6,7 @@ import (
 )
 
 type CategoryRequest struct {
-	Name        string `valid:"name" json:"name"`
+	Name        string `valid:"name" json:"name,omitempty"`
 	Description string `valid:"description" json:"description,omitempty"`
 }
 

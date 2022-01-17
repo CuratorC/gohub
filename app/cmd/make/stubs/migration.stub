@@ -22,11 +22,19 @@ func init() {
     }
 
     up := func(migrator gorm.Migrator, DB *sql.DB) {
-        migrator.AutoMigrate(&User{})
+        err := migrator.AutoMigrate(&User{})
+        if err != nil {
+            logger.ErrorString("migration", "users", "AutoMigrate error")
+            return
+        }
     }
 
     down := func(migrator gorm.Migrator, DB *sql.DB) {
-        migrator.DropTable(&User{})
+        err := migrator.DropTable(&User{})
+        if err != nil {
+            logger.ErrorString("migration", "users", "AutoMigrate error")
+            return
+        }
     }
 
     migrate.Add("{{FileName}}", up, down)

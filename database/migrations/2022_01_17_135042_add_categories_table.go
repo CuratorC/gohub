@@ -23,7 +23,7 @@ func init() {
 	up := func(migrator gorm.Migrator, DB *sql.DB) {
 		err := migrator.AutoMigrate(&Category{})
 		if err != nil {
-			logger.ErrorString("migration", "users", "AutoMigrate error")
+			logger.ErrorString("migration", "categories", "AutoMigrate error")
 			return
 		}
 	}
@@ -31,7 +31,7 @@ func init() {
 	down := func(migrator gorm.Migrator, DB *sql.DB) {
 		err := migrator.DropTable(&Category{})
 		if err != nil {
-			logger.ErrorString("migration", "users", "DropTable error")
+			logger.ErrorString("migration", "categories", "DropTable error")
 			return
 		}
 	}

@@ -2,8 +2,10 @@ package link
 
 import (
 	"gohub/pkg/app"
+	"gohub/pkg/cache"
 	"gohub/pkg/database"
 	"gohub/pkg/paginator"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -37,5 +39,17 @@ func Paginate(c *gin.Context, perPage int) (links []Link, paging paginator.Pagin
 		app.V1URL(database.TableName(&Link{})),
 		perPage,
 	)
+	return
+}
+
+func AllCached() (links []Link) {
+	// 设置缓存 key
+	cacheKey := "links:all"
+	// 设置过期时间
+	expireTime := 120 * time.Minute
+	// 取数据
+	cache.RememberObject(cacheKey, expireTime, &links, func() interface{} {
+		return All()
+	})
 	return
 }

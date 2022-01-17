@@ -3,6 +3,7 @@ package cache
 
 import (
 	"encoding/json"
+	"gohub/pkg/helpers"
 	"gohub/pkg/logger"
 	"sync"
 	"time"
@@ -39,6 +40,22 @@ func Get(key string) interface{} {
 	return wanted
 }
 
+func Remember(key string, expireTime time.Duration, fu func() interface{}) (response interface{}) {
+	// 取数据
+	response = Get(key)
+
+	// 如果数据为空
+	if helpers.Empty(response) {
+		// 执行查询
+		response = fu()
+		if !helpers.Empty(response) {
+			// 设置缓存
+			Set(key, response, expireTime)
+		}
+	}
+	return
+}
+
 func Has(key string) bool {
 	return Cache.Store.Has(key)
 }
@@ -51,6 +68,22 @@ func GetObject(key string, wanted interface{}) {
 	if len(val) > 0 {
 		err := json.Unmarshal([]byte(val), &wanted)
 		logger.LogIf(err)
+	}
+}
+
+func RememberObject(key string, expireTime time.Duration, wanted interface{}, fu func() interface{}) {
+	// 取数据
+	GetObject(key, &wanted)
+
+	// 如果数据为空
+	if helpers.Empty(wanted) {
+		// 执行查询
+		wanted = fu()
+		if helpers.Empty(wanted) {
+			return
+		}
+		// 设置缓存
+		Set(key, wanted, expireTime)
 	}
 }
 

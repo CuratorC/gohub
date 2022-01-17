@@ -50,6 +50,7 @@ func main() {
 		cmd.CmdPlay,    // Play 调试
 		make.CmdMake,   // make 命令
 		cmd.CmdMigrate, // 数据库迁移
+		cmd.CmdDBSeed,  // 数据库填充
 	)
 
 	// 配置默认运行 Web 服务

@@ -32,7 +32,7 @@ func init() {
     down := func(migrator gorm.Migrator, DB *sql.DB) {
         err := migrator.DropTable(&User{})
         if err != nil {
-            logger.ErrorString("migration", "users", "AutoMigrate error")
+            logger.ErrorString("migration", "users", "DropTable error")
             return
         }
     }

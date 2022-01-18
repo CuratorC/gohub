@@ -57,6 +57,9 @@ func RegisterAPIRoutes(r *gin.Engine) {
 			{
 				// 获取所有用户
 				usersGroup.GET("", uc.Index)
+
+				// 修改用户信息
+				usersGroup.PUT("", middlewares.AuthJWT(), uc.UpdateProfile)
 			}
 
 			cgc := new(controllers.CategoriesController)

@@ -64,11 +64,12 @@ func (ctrl *CategoriesController) Update(c *gin.Context) {
 	categoryModel.Description = request.Description
 	rowsAffected := categoryModel.Save()
 
-	if rowsAffected > 0 {
-		response.Data(c, categoryModel)
-	} else {
+	if rowsAffected != 1 {
 		response.Abort500(c)
+		return
 	}
+
+	response.Data(c, categoryModel)
 }
 
 func (ctrl *CategoriesController) Delete(c *gin.Context) {
@@ -79,10 +80,10 @@ func (ctrl *CategoriesController) Delete(c *gin.Context) {
 	}
 
 	rowsAffected := categoryModel.Delete()
-	if rowsAffected > 0 {
-		response.Success(c)
+	if rowsAffected != 1 {
+		response.Abort500(c, "删除失败，请稍后尝试~")
 		return
 	}
 
-	response.Abort500(c, "删除失败，请稍后尝试~")
+	response.Success(c)
 }

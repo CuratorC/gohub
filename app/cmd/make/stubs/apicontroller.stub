@@ -70,11 +70,12 @@ func (ctrl *{{StructNamePlural}}Controller) Update(c *gin.Context) {
 
     {{VariableName}}Model.FieldName = request.FieldName
     rowsAffected := {{VariableName}}Model.Save()
-    if rowsAffected > 0 {
-        response.Data(c, {{VariableName}}Model)
-    } else {
+    if rowsAffected != 1 {
         response.Abort500(c, "更新失败，请稍后尝试~")
+        return
     }
+
+    response.Data(c, {{VariableName}}Model)
 }
 
 func (ctrl *{{StructNamePlural}}Controller) Delete(c *gin.Context) {
@@ -91,10 +92,10 @@ func (ctrl *{{StructNamePlural}}Controller) Delete(c *gin.Context) {
     }
 
     rowsAffected := {{VariableName}}Model.Delete()
-    if rowsAffected > 0 {
-        response.Success(c)
+    if rowsAffected != 1 {
+        response.Abort500(c, "删除失败，请稍后尝试~")
         return
     }
 
-    response.Abort500(c, "删除失败，请稍后尝试~")
+    response.Success(c)
 }

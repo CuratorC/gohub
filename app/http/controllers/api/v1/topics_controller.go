@@ -80,10 +80,11 @@ func (ctrl *TopicsController) Update(c *gin.Context) {
 	topicModel.Body = request.Body
 	topicModel.CategoryID = request.CategoryID
 	rowsAffected := topicModel.Save()
-	if rowsAffected > 0 {
-		response.Data(c, topicModel)
+	if rowsAffected != 1 {
+		response.Abort500(c, "更新失败，请稍后尝试~")
 	}
-	response.Abort500(c, "更新失败，请稍后尝试~")
+
+	response.Data(c, topicModel)
 }
 
 func (ctrl *TopicsController) Delete(c *gin.Context) {
@@ -100,10 +101,10 @@ func (ctrl *TopicsController) Delete(c *gin.Context) {
 	}
 
 	rowsAffected := topicModel.Delete()
-	if rowsAffected > 0 {
-		response.Success(c)
+	if rowsAffected != 1 {
+		response.Abort500(c, "删除失败，请稍后尝试~")
 		return
 	}
 
-	response.Abort500(c, "删除失败，请稍后尝试~")
+	response.Success(c)
 }

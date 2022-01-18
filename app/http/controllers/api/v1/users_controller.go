@@ -4,6 +4,8 @@ import (
 	"gohub/app/models/user"
 	"gohub/app/requests"
 	"gohub/pkg/auth"
+	"gohub/pkg/config"
+	"gohub/pkg/file"
 	"gohub/pkg/response"
 
 	"github.com/gin-gonic/gin"
@@ -53,4 +55,23 @@ func (ctrl *UsersController) UpdateProfile(c *gin.Context) {
 
 	response.Data(c, currentUser)
 
+}
+
+func (ctrl *UsersController) UpdateAvatar(c *gin.Context) {
+	request := requests.UserUpdateAvatarRequest{}
+	if ok := requests.Validate(c, &request, requests.UserUpdateAvatar); !ok {
+		return
+	}
+
+	avatar, err := file.SaveUploadAvatar(c, request.Avatar)
+	if err != nil {
+		response.Abort500(c, "上传头像失败，请稍后尝试~")
+		return
+	}
+
+	currentUser := auth.CurrentUser(c)
+	currentUser.Avatar = config.GetString("app.url") + "/" + avatar
+	currentUser.Save()
+
+	response.Data(c, currentUser)
 }

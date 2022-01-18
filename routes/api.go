@@ -60,6 +60,9 @@ func RegisterAPIRoutes(r *gin.Engine) {
 
 				// 修改用户信息
 				usersGroup.PUT("", middlewares.AuthJWT(), uc.UpdateProfile)
+
+				// 上传头像
+				usersGroup.PUT("avatar", middlewares.AuthJWT(), uc.UpdateAvatar)
 			}
 
 			cgc := new(controllers.CategoriesController)

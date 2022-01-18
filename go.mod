@@ -5,6 +5,7 @@ go 1.17
 require (
 	github.com/KenmyZhang/aliyun-communicate v0.0.0-20180308134849-7997edc57454 // 阿里云短信服务
 	github.com/bxcodec/faker/v3 v3.7.0 // 数据工厂
+	github.com/disintegration/imaging v1.6.2 // 图片裁切
 	github.com/gertd/go-pluralize v0.1.7 // 单词单复数转换
 	github.com/gin-gonic/gin v1.7.7 // Go 路由工具
 	github.com/go-redis/redis/v8 v8.11.4 // redis 存储
@@ -25,8 +26,6 @@ require (
 	gorm.io/driver/sqlite v1.2.6 // sqlite 驱动
 	gorm.io/gorm v1.22.4 // GORM
 )
-
-require github.com/disintegration/imaging v1.6.2
 
 require (
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect

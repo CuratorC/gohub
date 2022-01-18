@@ -40,6 +40,9 @@ func main() {
 
 			// 初始化 Redis
 			bootstrap.SetupRedis()
+
+			// 初始化缓存
+			bootstrap.SetupCache()
 		},
 	}
 
@@ -51,6 +54,7 @@ func main() {
 		make.CmdMake,   // make 命令
 		cmd.CmdMigrate, // 数据库迁移
 		cmd.CmdDBSeed,  // 数据库填充
+		cmd.CmdCache,   // 缓存命令
 	)
 
 	// 配置默认运行 Web 服务

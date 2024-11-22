@@ -1,4 +1,4 @@
-module github.com/CuratorC/gohub
+module gohub
 
 go 1.23
 

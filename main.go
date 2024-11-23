@@ -7,6 +7,7 @@ import (
 	"gohub/bootstrap"
 	btsConfig "gohub/config"
 	"gohub/pkg/config"
+	"gohub/pkg/sms"
 )
 
 func init() {

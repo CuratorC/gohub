@@ -7,7 +7,6 @@ import (
 	"gohub/bootstrap"
 	btsConfig "gohub/config"
 	"gohub/pkg/config"
-	"gohub/pkg/sms"
 )
 
 func init() {
@@ -43,7 +42,6 @@ func main() {
 
 	// 初始化路由绑定
 	bootstrap.SetupRoutes(router)
-
 	// 运行服务
 	err := router.Run(":" + config.Get("app.port"))
 	if err != nil {

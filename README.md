@@ -24,7 +24,10 @@ go run main.go make factory model_name
 ```bash
 go run main.go make seeder model_name
 ```
-
+* 授权策略
+```bash
+go run main.go make policy project
+```
 
 * 数据库迁移：
 ```bash

@@ -3,6 +3,7 @@ package migrations
 import (
     "database/sql"
     "gohub/app/models"
+	"gohub/pkg/logger"
     "gohub/pkg/migrate"
 
     "gorm.io/gorm"
@@ -10,7 +11,7 @@ import (
 
 func init() {
 
-    type {{StructNamePlural}} struct {
+    type {{StructName}} struct {
         models.BaseModel
 
         Name     string `gorm:"type:varchar(255);not null;index"`
@@ -22,7 +23,7 @@ func init() {
     }
 
     up := func(migrator gorm.Migrator, DB *sql.DB) {
-		err := migrator.AutoMigrate(&{{StructNamePlural}}{})
+		err := migrator.AutoMigrate(&{{StructName}}{})
 		if err != nil {
 			logger.ErrorString("migration", "迁移失败", err.Error())
 			return
@@ -30,7 +31,7 @@ func init() {
     }
 
     down := func(migrator gorm.Migrator, DB *sql.DB) {
-		err := migrator.DropTable(&{{StructNamePlural}}{})
+		err := migrator.DropTable(&{{StructName}}{})
 		if err != nil {
 			logger.ErrorString("migration", "迁移失败", err.Error())
 			return

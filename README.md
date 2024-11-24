@@ -6,7 +6,7 @@ go run main.go make model model_name
 ```
 * 迁移文件
 ```bash
-go run main.go make migration add_model_names_table
+go run main.go make migration model_name
 ```
 * 请求验证文件
 ```bash

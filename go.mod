@@ -4,8 +4,10 @@ go 1.23.3
 
 require (
 	github.com/CuratorC/aliyun-communicate v0.0.0-00010101000000-000000000000
+	github.com/gertd/go-pluralize v0.2.1
 	github.com/gin-gonic/gin v1.10.0
 	github.com/golang-jwt/jwt v3.2.2+incompatible
+	github.com/iancoleman/strcase v0.3.0
 	github.com/jordan-wright/email v4.0.1-0.20210109023952-943e75fe5223+incompatible
 	github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d
 	github.com/mojocn/base64Captcha v1.3.1

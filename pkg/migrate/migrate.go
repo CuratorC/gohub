@@ -4,6 +4,7 @@ package migrate
 import (
 	"gohub/pkg/console"
 	"gohub/pkg/database"
+	"gohub/pkg/file"
 	"os"
 
 	"gorm.io/gorm"
@@ -45,7 +46,10 @@ func (migrator *Migrator) createMigrationsTable() {
 
 	// 不存在才创建
 	if !migrator.Migrator.HasTable(&migration) {
-		migrator.Migrator.CreateTable(&migration)
+		err := migrator.Migrator.CreateTable(&migration)
+		if err != nil {
+			return
+		}
 	}
 }
 

@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func SetupRoutes(router *gin.Engine) {
+func SetupRoute(router *gin.Engine) {
 	// 注册全局中间件
 	registerGlobalMiddleWare(router)
 
